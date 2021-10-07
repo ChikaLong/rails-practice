@@ -10,6 +10,30 @@
   </head>
 
   <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+        <div class="container">
+          <a class="navbar-brand p-2" href="/">Diary</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li><%= link_to "Mypage", user_path(current_user.id), class: "nav-link text-light" %></li>
+                <li><%= link_to "NewDiary", new_write_path, class: "nav-link text-light"  %></li>
+                <li><%= link_to "Diaries", writes_path, class: "nav-link text-light" %></li>
+                <li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "nav-link text-light" %></li>
+              <% else %>
+                <li><%= link_to "Signup", new_user_registration_path, class: "nav-link text-light" %></li>
+                <li><%= link_to "Login", new_user_session_path, class: "nav-link text-light" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
     <%= yield %>
   </body>
 </html>

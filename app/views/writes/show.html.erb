@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row mt-3">
+    <%= render 'users/info', user: @user %>
+
+    <div class="col-md-8 offset-md-1">
+      <h2><%= @write.title %></h2>
+
+      <div>
+        <%= attachment_image_tag @write, :image, :fill, 300, 300 %>
+        <p><%= @write.body %></p>
+        <p>
+          <%= link_to user_path(@user) do %>
+            <%= @write.user.name %>
+          <% end %>
+        </p>
+        <p><%= @write.created_at.strftime('%Y/%m/%d') %></p>
+
+        <% if @write.user.id == current_user.id %>
+          <%= link_to "Edit", edit_write_path(@write) %> |
+          <%= link_to "Destroy", write_path(@write), method: :delete %>
+        <% end %>
+      </div>
+
+      <%= render 'write_comments/comment', write: @write, write_comment: @write_comment %>
+    </div>
+  </div>
+</div>

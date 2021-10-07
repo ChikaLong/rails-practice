@@ -1,0 +1,30 @@
+<div class="mt-5">
+  <p>コメント件数:<%= write.write_comments.count %></p>
+
+  <% write.write_comments.each do |write_comment| %>
+    <table class="table">
+      <tr>
+        <td>
+          <%= attachment_image_tag write_comment.user, :profile_image, :fill, 50, 50 %><br>
+          <%= write.user.name %>
+        </td>
+        <td><%= write_comment.comment %></td>
+        <td><%= write_comment.created_at.strftime('%Y/%m/%d') %></td>
+        <td>
+          <% if write_comment.user.id == current_user.id %>
+            <%= link_to "destroy", write_write_comment_path(write_comment.write, write_comment), method: :delete %>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+
+  <%= form_with(model:[write, write_comment], local: true) do |f| %>
+    <div class="form-group">
+      <%= f.text_area :comment, placeholder: "コメント" %>
+    </div>
+    <div class="form-group">
+      <%=f .submit "Comment", class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>
