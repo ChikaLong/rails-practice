@@ -18,6 +18,9 @@
               <% end %>
             </td>
             <td><%= write.created_at.strftime('%Y/%m/%d') %></td>
+            <td id="favorite_button_<%= write.id %>">
+              <%= render 'favorites/favorite', write: write %>
+            </td>
           </tr>
         </table>
       <% end %>
