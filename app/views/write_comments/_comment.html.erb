@@ -6,22 +6,22 @@
       <tr>
         <td>
           <%= attachment_image_tag write_comment.user, :profile_image, :fill, 50, 50 %><br>
-          <%= write.user.name %>
+          <%= write_comment.user.name %>
         </td>
         <td><%= write_comment.comment %></td>
         <td><%= write_comment.created_at.strftime('%Y/%m/%d') %></td>
         <td>
-          <% if write_comment.user.id == current_user.id %>
-            <%= link_to "destroy", write_write_comment_path(write_comment.write, write_comment), method: :delete %>
+          <% if write_comment.user == current_user %>
+            <%= link_to "destroy", write_write_comment_path(write_comment.write_id, write_comment.id), method: :delete, remote: true %>
           <% end %>
         </td>
       </tr>
     </table>
   <% end %>
 
-  <%= form_with(model:[write, write_comment], local: true) do |f| %>
+  <%= form_with(model:[write, write_comment]) do |f| %>
     <div class="form-group">
-      <%= f.text_area :comment, placeholder: "コメント" %>
+      <%= f.text_area :comment, placeholder: "コメント", class: "form-control" %>
     </div>
     <div class="form-group">
       <%=f .submit "Comment", class: "btn btn-secondary" %>

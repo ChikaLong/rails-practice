@@ -1,15 +1,18 @@
 class WriteCommentsController < ApplicationController
   def create
     @write = Write.find(params[:write_id])
-    @comment = current_user.write_comments.new(write_comment_params)
-    @comment.write_id = @write.id
-    @comment.save
-    redirect_to write_path(@write)
+    @write_comment = WriteComment.new
+    write_comment = current_user.write_comments.new(write_comment_params)
+    write_comment.write_id = @write.id
+    unless write_comment.save
+      render :show
+    end
   end
 
   def destroy
-    WriteComment.find_by(id: params[:id]).destroy
-    redirect_to write_path(params[:write_id])
+    @write = Write.find(params[:write_id])
+    @write_comment = @write.write_comments.find(params[:id])
+    @write_comment.destroy
   end
 
   private

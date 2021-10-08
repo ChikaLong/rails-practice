@@ -21,7 +21,9 @@
         <% end %>
       </div>
 
-      <%= render 'write_comments/comment', write: @write, write_comment: @write_comment %>
+      <div id="comments_area_<%= @write.id %>">
+        <%= render 'write_comments/comment', write: @write, write_comment: @write_comment %>
+      </div>
     </div>
   </div>
 </div>
