@@ -26,8 +26,14 @@
       </div>
 
       <div id="comments_area_<%= @write.id %>">
-        <%= render 'write_comments/comment', write: @write, write_comment: @write_comment %>
+        <%= render 'write_comments/comment', write: @write, write_comment: @write_comment, user: @user %>
       </div>
     </div>
   </div>
 </div>
+
+<span id="back">
+  <a href="">
+    <%= image_tag asset_path('arrow.png'), data: {"turbolinks"=>false}, class: "arrow" %>
+  </a>
+</span>
