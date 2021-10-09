@@ -9,6 +9,7 @@
         <%= attachment_image_tag @write, :image, :fill, 300, 300 %>
         <p><%= @write.body %></p>
         <p>
+          Diary user :
           <%= link_to user_path(@user) do %>
             <%= @write.user.name %>
           <% end %>

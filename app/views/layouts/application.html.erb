@@ -33,7 +33,11 @@
         </div>
       </nav>
     </header>
-
-    <%= yield %>
+    
+    <main>
+      <%= render "searches/form" %>
+      
+      <%= yield %>
+    </main>
   </body>
 </html>
