@@ -11,7 +11,7 @@ class WritesController < ApplicationController
   end
 
   def index
-    @writes = Write.all
+    @writes = Write.page(params[:page]).reverse_order
     @user = current_user
   end
 
