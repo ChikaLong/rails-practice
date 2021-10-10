@@ -29,6 +29,13 @@
           <% end %>
         </th>
       </tr>
+      <tr>
+        <th colspan="2">
+          <% if user.id == current_user.id%>
+            <%= link_to "お気に入り一覧", favorites_users_path %>
+          <% end %>
+        </th>
+      </tr>
     </tbody>
   </table>
 

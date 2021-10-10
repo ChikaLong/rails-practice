@@ -6,8 +6,11 @@ class WritesController < ApplicationController
   def create
     @write = Write.new(write_params)
     @write.user_id = current_user.id
-    @write.save
-    redirect_to write_path(@write)
+    if @write.save
+      redirect_to write_path(@write)
+    else
+      render :new
+    end
   end
 
   def index
@@ -28,8 +31,11 @@ class WritesController < ApplicationController
   def update
     @write = Write.find(params[:id])
     @write.user_id = current_user.id
-    @write.update(write_params)
-    redirect_to writes_path(@write)
+    if @write.update(write_params)
+      redirect_to writes_path(@write)
+    else
+      render :edit
+    end
   end
 
   def destroy

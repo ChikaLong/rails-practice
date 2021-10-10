@@ -14,6 +14,11 @@ class UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  def favorites
+    favorites = Favorite.where(user_id: current_user.id).pluck(:write_id)
+    @favorite_writes = Write.find(favorites)
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)

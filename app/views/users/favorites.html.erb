@@ -1,0 +1,17 @@
+<h1>お気に入り一覧</h1>
+<% @favorite_writes.each do |write| %>
+  <table class="table">
+    <tr>
+      <td>
+        <%= attachment_image_tag write, :image, :fill, 50, 50 %><br>
+        <%= write.user.name %>
+      </td>
+      <td>
+        <%= link_to write_path(write) do %>
+          <%= write.title %>
+        <% end %>
+      </td>
+      <td><%= write.created_at.strftime('%Y/%m/%d') %></td>
+    </tr>
+  </table>
+<% end %>
